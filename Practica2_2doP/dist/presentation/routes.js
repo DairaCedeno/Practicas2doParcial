@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppRoutes = void 0;
+const express_1 = require("express");
+const routes_1 = require("./encuentros/routes");
+const routes_2 = require("./pronosticos/routes");
+const routes_3 = require("./apostadores/routes");
+const github_routes_1 = require("./github/github.routes");
+const router = (0, express_1.Router)();
+router.use('/encuentro', routes_1.EncuentroRoutes.routes);
+router.use('/pronostico', routes_2.PronosticoRoutes.routes);
+router.use('/apostador', routes_3.ApostadorRoutes.routes);
+router.use('/github', github_routes_1.GitHubRoutes.routes);
+exports.AppRoutes = { routes: router };
