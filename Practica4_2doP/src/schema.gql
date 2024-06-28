@@ -1,0 +1,101 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Apostador {
+  id: Int!
+  nombre: String!
+  identificacion: String!
+  estado: String!
+  pronosticos: [Pronostico!]!
+}
+
+type EncuentroDeportivo {
+  id: Int!
+  nombre: String!
+  fecha: String!
+  lugar: String!
+  equipoLocal: String!
+  equipoVisitante: String!
+  estado: String!
+  pronosticos: [Pronostico!]!
+}
+
+type Pronostico {
+  id: Int!
+  descripcion: String!
+  resultadoEsperado: String!
+  encuentroDeportivo: EncuentroDeportivo!
+  apostador: Apostador!
+}
+
+type Query {
+  apostadores(estado: String): [Apostador!]!
+  apostador(id: ID!): Apostador!
+  encuentrosDeportivos(estado: String): [EncuentroDeportivo!]!
+  encuentroDeportivo(id: ID!): EncuentroDeportivo!
+  pronosticos(estado: String): [Pronostico!]!
+  pronostico(id: ID!): Pronostico!
+}
+
+type Mutation {
+  createActiveApostador(createApostadorInput: CreateApostadorInput!): Apostador!
+  createInactiveApostador(createApostadorInput: CreateApostadorInput!): Apostador!
+  updateApostador(updateApostadorInput: UpdateApostadorInput!): Apostador!
+  removeApostador(id: ID!): Apostador!
+  
+  createEncuentroDeportivo(createEncuentroDeportivoInput: CreateEncuentroDeportivoInput!): EncuentroDeportivo!
+  updateEncuentroDeportivo(updateEncuentroDeportivoInput: UpdateEncuentroDeportivoInput!): EncuentroDeportivo!
+  removeEncuentroDeportivo(id: ID!): EncuentroDeportivo!
+  
+  createPronostico(createPronosticoInput: CreatePronosticoInput!): Pronostico!
+  updatePronostico(updatePronosticoInput: UpdatePronosticoInput!): Pronostico!
+  removePronostico(id: ID!): Pronostico!
+}
+
+input CreateApostadorInput {
+  nombre: String!
+  identificacion: String!
+  estado: String
+}
+
+input UpdateApostadorInput {
+  nombre: String
+  identificacion: String
+  estado: String
+  id: ID!
+}
+
+input CreateEncuentroDeportivoInput {
+  nombre: String!
+  fecha: String!
+  lugar: String!
+  equipoLocal: String!
+  equipoVisitante: String!
+  estado: String
+}
+
+input UpdateEncuentroDeportivoInput {
+  nombre: String
+  fecha: String
+  lugar: String
+  equipoLocal: String
+  equipoVisitante: String
+  estado: String
+  id: ID!
+}
+
+input CreatePronosticoInput {
+  descripcion: String!
+  resultadoEsperado: String!
+  encuentroDeportivoId: Int!
+  apostadorId: Int!
+}
+
+input UpdatePronosticoInput {
+  descripcion: String
+  resultadoEsperado: String
+  encuentroDeportivoId: Int
+  apostadorId: Int
+  id: ID!
+}
