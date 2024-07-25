@@ -1,0 +1,44 @@
+type DiaFestivo {
+  id: ID!
+  codigo: String!
+  celebracion: String!
+  tipo: String!
+  explicacionFeriado: String!
+  beneficiosEconomicosTurismo: Float!
+  fechaUltimoDiaFestivo: String!
+  empresa: String!
+}
+
+type Query {
+  diaFestivos: [DiaFestivo!]!
+  diaFestivo(id: ID!): DiaFestivo
+  diaFestivoPorCodigo(codigo: String!): DiaFestivo
+  diaFestivosPorBeneficiosEconomicos(beneficiosEconomicos: Float!): [DiaFestivo!]!
+}
+
+input CreateDiaFestivoInput {
+  codigo: String!
+  celebracion: String!
+  tipo: String!
+  explicacionFeriado: String!
+  beneficiosEconomicosTurismo: Float!
+  fechaUltimoDiaFestivo: String!
+  empresa: String!
+}
+
+input UpdateDiaFestivoInput {
+  codigo: String
+  celebracion: String
+  tipo: String
+  explicacionFeriado: String
+  beneficiosEconomicosTurismo: Float
+  fechaUltimoDiaFestivo: String
+  empresa: String
+}
+
+type Mutation {
+  createDiaFestivo(input: CreateDiaFestivoInput!): DiaFestivo!
+  updateDiaFestivo(id: ID!, input: UpdateDiaFestivoInput!): DiaFestivo
+  deleteDiaFestivoPhysical(id: ID!): Boolean
+  deleteDiaFestivoLogical(id: ID!): Boolean
+}

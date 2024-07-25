@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Client</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <script>
+        const socket = io('http://localhost:3000'); // URL del servidor WebSocket
+
+        socket.on('connect', () => {
+            console.log('Connected to WebSocket server');
+        });
+
+        socket.on('examen6B', (data) => {
+            console.log('Received data:', data);
+        });
+
+        // Enviar un objeto al servidor
+        function sendDiaFestivo() {
+            const data = {
+                id: 1,
+                codigo: 'Ene01',
+                celebracion: 'Independencia de Cuenca',
+                tipo: 'Local',
+                explicacionFeriado: 'Se celebra la independencia de la ciudad de Cuenca desde 1820',
+                beneficiosEconomicosTurismo: 3000000,
+                fechaUltimoDiaFestivo: '2023-09-01',
+                empresa: 'Manta Mall. S.A.',
+            };
+            socket.emit('examen6B', data);
+        }
+
+        // Llama a sendDiaFestivo() cuando desees enviar datos
+        sendDiaFestivo();
+    </script>
+</body>
+</html>
